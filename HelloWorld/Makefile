@@ -1,8 +1,8 @@
 obj-m += hello.o
 KVER = $(shell uname -r)
-
-all:
-	make -C /lib/modules/$(KVER)/build M=$(PWD) modules
+DIRN = $(shell pwd)
+default:
+	make -C /lib/modules/$(KVER)/build M=$(DIRN) modules
 
 clean:
-	make -C /lib/modules/$(KVER)/build M=$(PWD) clean
+	make -C /lib/modules/$(KVER)/build M=$(DIRN) clean

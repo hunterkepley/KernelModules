@@ -50,11 +50,18 @@ static int __init parammodule_init(void) {
 	int i;
 	printk(KERN_INFO "Hello!\n----\n");
 	printk(KERN_INFO "myshort is a short integer: %hd\n", myshort);
-	printk(KERN_INFO "myint is an integer: %d\n, myint");
+	printk(KERN_INFO "myint is an integer: %d\n", myint);
 	printk(KERN_INFO "mylong is a long integer: %ld\n", mylong);
 	printk(KERN_INFO "mystring is a string: %s\n", mystring);
 
 	for(i = 0; i < (sizeof myintArray / sizeof(int)); i++) {
+		/* [Taught myself on this one:]
+		 * The reason you do `i < (sizeof myintArray / sizeof(int))
+		 * is because myintArray holds 2 ints, which are 4 bytes
+		 * each, 8 bytes total. sizeof(int) is 4 bytes, so
+		 * 8/4 = 2, just for future reference when making forloops
+		 * on things like arrays rather than arraylists and such.
+		 */
 		printk(KERN_INFO "myintArray[%d] = %d\n", i, myintArray[i]);
 	}
 	printk(KERN_INFO "got %d arguments for myintArray.\n", arr_argc);
